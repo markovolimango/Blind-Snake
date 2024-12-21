@@ -1,4 +1,5 @@
-/Users/marko/CLionProjects/snake/cmake-build-debug/CMakeFiles/snake.dir
+/Users/marko/CLionProjects/snake/cmake-build-debug/CMakeFiles/play.dir
 /Users/marko/CLionProjects/snake/cmake-build-debug/CMakeFiles/generate_path.dir
+/Users/marko/CLionProjects/snake/cmake-build-debug/CMakeFiles/tests.dir
 /Users/marko/CLionProjects/snake/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/marko/CLionProjects/snake/cmake-build-debug/CMakeFiles/rebuild_cache.dir
