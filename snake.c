@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "snake.h"
 
+//send_signal takes a character as input determining which direction it moves the snake
 bool send_signal(const char signal, Position *pos, const Position apple, const int A, const int B) {
     if (signal == 'l') {
         if (pos->x != 1)
@@ -28,8 +29,10 @@ bool send_signal(const char signal, Position *pos, const Position apple, const i
     return pos->x == apple.x && pos->y == apple.y;
 }
 
-long long search(FILE *path, Position *pos, const Position apple, const int A, const int B) {
+//the find_apple function returns the amount of moves it took to find the apple. in case in isn't found, it returns a negative number
+long long find_apple(FILE *path, Position *pos, const Position apple, const int A, const int B) {
     char c = fgetc(path);
+    //move_count is the number of moves in one direction, like 50 moves to the right for example, while total is the total amount of moves made
     int move_count = 0;
     long long total = 0;
     while (c != '*') {

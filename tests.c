@@ -9,7 +9,7 @@
 bool run_test(FILE *path, Position pos, const Position apple, const int A, const int B) {
     int x0 = pos.x, y0 = pos.y;
     Position start = {x0, y0};
-    long long total = search(path, &start, apple, A, B), max = 35 * A * B;
+    long long total = find_apple(path, &start, apple, A, B), max = 35 * A * B;
     if (total < 0) {
         fprintf(stderr, "Failed to find apple for start at (%d, %d), apple at (%d, %d) and screen size of %d x %d.\n",
                 x0, y0, apple.x, apple.y, A, B);
@@ -25,7 +25,7 @@ bool run_test(FILE *path, Position pos, const Position apple, const int A, const
     return true;
 }
 
-int run_random_tests(int total) {
+void run_random_tests(int total) {
     int passed = 0;
     unsigned int seed = time(nullptr);
     printf("Running %d random tests...\n", total);
@@ -39,7 +39,7 @@ int run_random_tests(int total) {
         FILE *path = fopen("path.txt", "r");
         if (!path) {
             fprintf(stderr, "Failed to open file.\n");
-            return -1;
+            return;
         }
         if (run_test(path, pos, apple, A, B)) {
             passed++;
@@ -47,10 +47,9 @@ int run_random_tests(int total) {
         fclose(path);
     }
     printf("Passed %d / %d random tests.\n", passed, total);
-    return passed;
 }
 
-int run_edge_tests(int total) {
+void run_edge_corner_tests(int total) {
     int passed = 0;
     unsigned int seed = time(nullptr);
     printf("Running %d edge tests...\n", total);
@@ -70,7 +69,7 @@ int run_edge_tests(int total) {
         FILE *path = fopen("path.txt", "r");
         if (!path) {
             fprintf(stderr, "Failed to open file.\n");
-            return -1;
+            return;
         }
         if (run_test(path, pos, apple, A, B)) {
             passed++;
@@ -78,10 +77,9 @@ int run_edge_tests(int total) {
         fclose(path);
     }
     printf("Passed %d / %d edge tests.\n", passed, total);
-    return passed;
 }
 
-int run_random_edge_tests(int total) {
+void run_random_edge_tests(int total) {
     int passed = 0;
     unsigned int seed = time(nullptr);
     printf("Running %d random edge tests...\n", total);
@@ -103,7 +101,7 @@ int run_random_edge_tests(int total) {
         FILE *path = fopen("path.txt", "r");
         if (!path) {
             fprintf(stderr, "Failed to open file.\n");
-            return -1;
+            return;
         }
         if (run_test(path, pos, apple, A, B)) {
             passed++;
@@ -111,10 +109,9 @@ int run_random_edge_tests(int total) {
         fclose(path);
     }
     printf("Passed %d / %d random edge tests.\n", passed, total);
-    return passed;
 }
 
-int run_random_square_tests(int total) {
+void run_random_square_tests(int total) {
     int passed = 0;
     unsigned int seed = time(nullptr);
     printf("Running %d random square tests...\n", total);
@@ -128,7 +125,7 @@ int run_random_square_tests(int total) {
         FILE *path = fopen("path.txt", "r");
         if (!path) {
             fprintf(stderr, "Failed to open file.\n");
-            return -1;
+            return;
         }
         if (run_test(path, pos, apple, A, B)) {
             passed++;
@@ -136,10 +133,9 @@ int run_random_square_tests(int total) {
         fclose(path);
     }
     printf("Passed %d / %d random square tests.\n", passed, total);
-    return passed;
 }
 
-int run_square_tests(int total) {
+void run_square_corner_tests(int total) {
     int passed = 0;
     unsigned int seed = time(nullptr);
     printf("Running %d square tests...\n", total);
@@ -152,7 +148,7 @@ int run_square_tests(int total) {
         FILE *path = fopen("path.txt", "r");
         if (!path) {
             fprintf(stderr, "Failed to open file.\n");
-            return -1;
+            return;
         }
         if (run_test(path, pos, apple, A, B)) {
             passed++;
@@ -160,10 +156,9 @@ int run_square_tests(int total) {
         fclose(path);
     }
     printf("Passed %d / %d square tests.\n", passed, total);
-    return passed;
 }
 
-int run_corner_tests(int total) {
+void run_corner_tests(int total) {
     int passed = 0;
     unsigned int seed = time(nullptr);
     printf("Running %d corner tests...\n", total);
@@ -177,7 +172,7 @@ int run_corner_tests(int total) {
         FILE *path = fopen("path.txt", "r");
         if (!path) {
             fprintf(stderr, "Failed to open file.\n");
-            return -1;
+            return;
         }
         if (run_test(path, pos, apple, A, B)) {
             passed++;
@@ -185,10 +180,9 @@ int run_corner_tests(int total) {
         fclose(path);
     }
     printf("Passed %d / %d corner tests.\n", passed, total);
-    return passed;
 }
 
-int run_random_corner_tests(int total) {
+void run_random_corner_tests(int total) {
     int passed = 0;
     unsigned int seed = time(nullptr);
     printf("Running %d random corner tests...\n", total);
@@ -202,7 +196,7 @@ int run_random_corner_tests(int total) {
         FILE *path = fopen("path.txt", "r");
         if (!path) {
             fprintf(stderr, "Failed to open file.\n");
-            return -1;
+            return;
         }
         if (run_test(path, pos, apple, A, B)) {
             passed++;
@@ -210,25 +204,26 @@ int run_random_corner_tests(int total) {
         fclose(path);
     }
     printf("Passed %d / %d random corner tests.\n", passed, total);
-    return passed;
 }
 
 int main() {
-    int total = 0, passed = 0;
     int count = 100;
-    passed += run_random_tests(10 * count);
-    total += 10 * count;
-    passed += run_random_square_tests(count);
-    total += count;
-    passed += run_square_tests(count);
-    total += count;
-    passed += run_random_edge_tests(count);
-    total += count;
-    passed += run_edge_tests(count);
-    total += count;
-    total += run_random_corner_tests(count);
-    total += count;
-    total += run_corner_tests(count);
-    total += count;
+    //everything is random
+    run_random_tests(10 * count);
+
+    //A=B, everything else is random
+    run_random_square_tests(count);
+    //x0=y0, A=B, xa=A ya=B, S is random
+    run_square_corner_tests(count);
+
+    //A=1 or B=1, everything else is random
+    run_random_edge_tests(count);
+    //x0=y0=1, A=1 xa=1 ya=B or B=1 xa=A ya=1, S is random
+    run_edge_corner_tests(count);
+
+    //x0=y0=1, everything else is random
+    run_random_corner_tests(count);
+    //x0=y0=1, xa=A ya=B, everything else is random
+    run_corner_tests(count);
     return 0;
 }
