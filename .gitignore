@@ -1,1 +1,29 @@
-cmake-build-debug/
+# CMake build directories
+cmake-build-*/
+build/
+CMakeFiles/
+*.cmake
+CMakeCache.txt
+Makefile
+
+# Build outputs
+*.o
+*.exe
+*.out
+*.app
+*.ninja*
+.ninja*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-specific
+generate_path
+play
+snake
+tests
