@@ -22,7 +22,7 @@ char invert_dir(char direction) {
     }
 }
 
-void generate_path(FILE *path, int S) {
+void generate_path(FILE *path, int S, bool isRight) {
     Move *moves = malloc(2 * S * sizeof(Move));
     if (!moves) {
         fprintf(stderr, "Memory allocation failed\n");
@@ -31,6 +31,7 @@ void generate_path(FILE *path, int S) {
     }
 
     int x = 1, y = S, moves_len = 0;
+    char side_move = isRight ? 'r' : 'l';
     Move move;
     move.direction = 'd';
     move.count = 1;
@@ -41,13 +42,13 @@ void generate_path(FILE *path, int S) {
                 moves[moves_len] = move;
                 moves_len++;
                 move.count = 1;
-                move.direction = 'r';
+                move.direction = side_move;
             } else {
                 move.count++;
             }
         } else {
             y--;
-            if (move.direction == 'r') {
+            if (move.direction == side_move) {
                 moves[moves_len] = move;
                 moves_len++;
                 move.count = 1;
@@ -93,10 +94,10 @@ int main(void) {
     }
 
     int S = 1000000;
-    generate_path(path, 2916);
-    generate_path(path, 49729);
-    generate_path(path, 320356);
-    generate_path(path, S);
+    generate_path(path, 2916, true);
+    generate_path(path, 49729, false);
+    generate_path(path, 320356, true);
+    generate_path(path, S, false);
     fprintf(path, "*");
     fclose(path);
     return 0;
