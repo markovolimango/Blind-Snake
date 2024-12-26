@@ -163,6 +163,56 @@ int run_square_tests(int total) {
     return passed;
 }
 
+int run_corner_tests(int total) {
+    int passed = 0;
+    unsigned int seed = time(nullptr);
+    printf("Running %d corner tests...\n", total);
+    for (int i = 0; i < total; i++) {
+        seed++;
+        int S = rand_r(&seed) % SMAX, A = 1 + rand_r(&seed) % ((int) sqrt(S)), B = S / A, x0 = 1, y0 = 1, xa = A, ya =
+                B;
+        Position pos, apple;
+        pos.x = x0, pos.y = y0;
+        apple.x = xa, apple.y = ya;
+        FILE *path = fopen("path.txt", "r");
+        if (!path) {
+            fprintf(stderr, "Failed to open file.\n");
+            return -1;
+        }
+        if (run_test(path, pos, apple, A, B)) {
+            passed++;
+        }
+        fclose(path);
+    }
+    printf("Passed %d / %d corner tests.\n", passed, total);
+    return passed;
+}
+
+int run_random_corner_tests(int total) {
+    int passed = 0;
+    unsigned int seed = time(nullptr);
+    printf("Running %d random corner tests...\n", total);
+    for (int i = 0; i < total; i++) {
+        seed++;
+        int S = rand_r(&seed) % SMAX, A = 1 + rand_r(&seed) % ((int) sqrt(S)), B = S / A, x0 = 1, y0 = 1, xa =
+                1 + rand_r(&seed) % A, ya = 1 + rand_r(&seed) % B;
+        Position pos, apple;
+        pos.x = x0, pos.y = y0;
+        apple.x = xa, apple.y = ya;
+        FILE *path = fopen("path.txt", "r");
+        if (!path) {
+            fprintf(stderr, "Failed to open file.\n");
+            return -1;
+        }
+        if (run_test(path, pos, apple, A, B)) {
+            passed++;
+        }
+        fclose(path);
+    }
+    printf("Passed %d / %d random corner tests.\n", passed, total);
+    return passed;
+}
+
 int main() {
     int total = 0, passed = 0;
     int count = 100;
@@ -172,9 +222,13 @@ int main() {
     total += count;
     passed += run_square_tests(100);
     total += count;
-    passed += run_random_edge_tests(100);
+    passed += run_random_edge_tests(count);
     total += count;
-    passed += run_edge_tests(100);
+    passed += run_edge_tests(count);
+    total += count;
+    total += run_random_corner_tests(count);
+    total += count;
+    total += run_corner_tests(count);
     total += count;
     return 0;
 }

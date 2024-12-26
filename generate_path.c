@@ -95,7 +95,7 @@ int main(void) {
     int S = 1000000;
     generate_path(path, 2916);
     generate_path(path, 49729);
-    generate_path(path, 319225);
+    generate_path(path, 320356);
     generate_path(path, S);
     fprintf(path, "*");
     fclose(path);
