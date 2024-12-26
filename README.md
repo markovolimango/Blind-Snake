@@ -1,6 +1,10 @@
 # Snake
 
-The solution to the Jetbrains internship task of "Blind Snake", in C
+My solution of the Jetbrains internship task of "Blind Snake", in C
+
+## Solution explanation
+
+The explanation of what my solution is and why it works is in the explanation.docx file.
 
 ## Using the Application
 
@@ -15,7 +19,7 @@ git clone https://github.com/markovolimango/snake
 ```
 - Create a build directory and navigate to it.
 ```bash
-cd JSON-Parser
+cd snake
 mkdir build
 cd build
 ```
@@ -28,29 +32,23 @@ cmake ..
 make
 ```
 
-### Running the expression evaluation
-- Place your JSON file in the build directory.
-- Run the *json_eval* executable and input the file name and expression.
+### Generating the path
+- Since the path the "snake" takes is always the same, it needs to be generated before playing or running the tests.
+- Just run the *generate_path* executable.
 ```bash
-./json_eval
-[filename] [expression]
+./generate_path
 ```
-Examples:
+
+### Playing the game
+- Run the *play* executable and input the conditions in the given order.
 ```bash
-./json_eval
-test.json a.b[1]
-```
-```bash
-./json_eval
-test.json a.b[max(0,a.b[1])]
-```
-```bash
-./json_eval
-test.json a.b[3][1]+a.b[size(a)]
+./play
+[A] [B] [x_start] [y_start] [x_apple] [y_apple]
 ```
 
 ### Running the tests
-- Just run the *tests* executable.
+- Run the *tests* executable and input the number of tests you want per category.
+- If you input a number *n*, the application will run *10n* random tests, then *n* tests in each category.
 ```bash
-./tests
+./tests [n]
 ```
