@@ -207,23 +207,28 @@ void run_random_corner_tests(int total) {
 }
 
 int main() {
-    int count = 100;
+    int count;
+    scanf("%d", &count);
     //everything is random
     run_random_tests(10 * count);
+    printf("\n");
 
     //A=B, everything else is random
     run_random_square_tests(count);
     //x0=y0, A=B, xa=A ya=B, S is random
     run_square_corner_tests(count);
+    printf("\n");
 
     //A=1 or B=1, everything else is random
     run_random_edge_tests(count);
     //x0=y0=1, A=1 xa=1 ya=B or B=1 xa=A ya=1, S is random
     run_edge_corner_tests(count);
+    printf("\n");
 
     //x0=y0=1, everything else is random
     run_random_corner_tests(count);
     //x0=y0=1, xa=A ya=B, everything else is random
     run_corner_tests(count);
+    printf("\n");
     return 0;
 }
