@@ -1,6 +1,6 @@
 # Snake
 
-My solution of the Jetbrains internship task of "Blind Snake", in C
+My solution of the JetBrains internship task of "Blind Snake", in C
 
 ## Solution explanation
 
