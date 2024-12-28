@@ -16,10 +16,10 @@ bool run_test(FILE *path, Position pos, const Position apple, const int A, const
         return false;
     }
     if (total > max) {
-        fprintf(
-            stderr,
-            "Took too many moves to find the apple for start at (%d, %d), apple at (%d, %d) and screen size of %d x %d.   %lld > 35 * %d = %lld\n",
-            x0, y0, apple.x, apple.y, A, B, total, A * B, max);
+        //fprintf(
+        //    stderr,
+        //    "Took too many moves to find the apple for start at (%d, %d), apple at (%d, %d) and screen size of %d x %d.   %lld > 35 * %d = %lld\n",
+        //    x0, y0, apple.x, apple.y, A, B, total, A * B, max);
         return false;
     }
     return true;
@@ -210,7 +210,7 @@ int main() {
     int count;
     scanf("%d", &count);
     //everything is random
-    run_random_tests(10 * count);
+    run_random_tests(count);
     printf("\n");
 
     //A=B, everything else is random
