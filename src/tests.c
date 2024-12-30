@@ -7,21 +7,24 @@
 #define SMAX 1000000
 
 bool run_test(FILE *path, Position pos, const Position apple, const int A, const int B) {
-    int x0 = pos.x, y0 = pos.y;
+    const int x0 = pos.x, y0 = pos.y;
     Position start = {x0, y0};
-    long long total = find_apple(path, &start, apple, A, B), max = 35 * A * B;
+    const long long total = find_apple(path, &start, apple, A, B), max = 35 * A * B;
+    //this means the apple wasn't found (it will never happen but just in case)
     if (total < 0) {
         fprintf(stderr, "Failed to find apple for start at (%d, %d), apple at (%d, %d) and screen size of %d x %d.\n",
                 x0, y0, apple.x, apple.y, A, B);
         return false;
     }
+    //this means the apple was found, but after more than 35 * S moves
     if (total > max) {
-        //fprintf(
-        //    stderr,
-        //    "Took too many moves to find the apple for start at (%d, %d), apple at (%d, %d) and screen size of %d x %d.   %lld > 35 * %d = %lld\n",
-        //    x0, y0, apple.x, apple.y, A, B, total, A * B, max);
+        fprintf(
+            stderr,
+            "Took too many moves to find the apple for start at (%d, %d), apple at (%d, %d) and screen size of %d x %d.   %lld > 35 * %d = %lld\n",
+            x0, y0, apple.x, apple.y, A, B, total, A * B, max);
         return false;
     }
+    //this means all's good
     return true;
 }
 
