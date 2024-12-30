@@ -24,7 +24,7 @@ git clone https://github.com/markovolimango/Blind-Snake
 - Create a build directory and navigate to it.
 
 ```bash
-cd snake/src
+cd Blind-Snake/src
 mkdir build
 cd build
 ```
