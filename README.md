@@ -4,7 +4,7 @@ My solution of the JetBrains internship task of "Blind Snake", in C
 
 ## Solution explanation
 
-The explanation of what my solution is and why it works is in the explanation.docx file.
+The explanation of what my solution is and why it works is in the my_solution.md file, in the docs folder.
 
 ## Using the Application
 
@@ -18,7 +18,7 @@ The explanation of what my solution is and why it works is in the explanation.do
 - Clone the repository.
 
 ```bash
-git clone https://github.com/markovolimango/snake
+git clone https://github.com/markovolimango/Blind-Snake
 ```
 
 - Create a build directory and navigate to it.
@@ -43,7 +43,7 @@ make
 
 ### Generating the path
 
-- Since the path the "snake" takes is always the same, it needs to be generated before playing or running the tests.
+- Since the path the "snake" takes is always the same, it is generated before playing or running the tests.
 - Just run the *generate_path* executable.
 
 ```bash
