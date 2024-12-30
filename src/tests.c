@@ -213,7 +213,7 @@ int main() {
     int count;
     scanf("%d", &count);
     //everything is random
-    run_random_tests(count);
+    run_random_tests(10 * count);
     printf("\n");
 
     //A=B, everything else is random
