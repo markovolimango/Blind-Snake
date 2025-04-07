@@ -1,6 +1,7 @@
 # Snake
 
 My solution of the JetBrains internship task of "Blind Snake", in C
+The task formulation can be found in "task.md"
 
 ## Solution explanation
 
